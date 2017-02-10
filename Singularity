@@ -4,6 +4,10 @@ OSVersion: yakkety
 MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 Include: python wget software-properties-common build-essential python-dev rsync sgml-base openssh-client xml-core
 
+%setup
+
+    cp pymultinest_demo_minimal.py $SINGULARITY_ROOTFS
+
 %post
 
 	wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py
@@ -18,6 +22,14 @@ Include: python wget software-properties-common build-essential python-dev rsync
 	cmake ..
 	make
 	make install
+    echo "LD_LIBRARY_PATH=/usr/local/lib/" > /environment
+    echo "export LD_LIBRARY_PATH" >> /environment
+    apt-get clean
+    mkdir /scratch
+    chmod -R 777 /scratch
+    mv /pymultinest_demo_minimal.py /scratch
 	exit 0
 
-
+%runscript
+	echo "Arguments received: $*"
+	exec /usr/bin/python "$@"
