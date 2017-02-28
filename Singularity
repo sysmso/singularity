@@ -17,7 +17,8 @@ Include: python wget software-properties-common build-essential python-dev rsync
 	add-apt-repository universe
 	apt-get update
 	apt-get -y install cmake git gfortran openmpi-common openmpi-bin libopenmpi-dev liblapack-dev
-	git clone https://github.com/JohannesBuchner/MultiNest.git
+	cd /tmp
+    git clone https://github.com/JohannesBuchner/MultiNest.git
 	cd MultiNest/build/
 	cmake ..
 	make
