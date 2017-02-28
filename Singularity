@@ -22,8 +22,7 @@ Include: python wget software-properties-common build-essential python-dev rsync
 	cmake ..
 	make
 	make install
-    echo "LD_LIBRARY_PATH=/usr/local/lib/" > /environment
-    echo "export LD_LIBRARY_PATH" >> /environment
+    echo "export LD_LIBRARY_PATH=/usr/local/lib/" > /environment
     apt-get clean
     mkdir /scratch
     chmod -R 777 /scratch
